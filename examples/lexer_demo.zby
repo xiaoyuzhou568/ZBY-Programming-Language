@@ -1,0 +1,14 @@
+// ZBY Lexer 演示：尚不运行程序
+struct Student {
+    name: string;
+    score: float;
+}
+
+let student: Student = Student {
+    name: "小宇宙\nZBY",
+    score: 1.25e+2
+};
+
+if (student.score >= 60.0) {
+    print("https://example.com", student.name);
+}

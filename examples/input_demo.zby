@@ -1,0 +1,2 @@
+let name: string = input("姓名: ");
+print("你好,", name);

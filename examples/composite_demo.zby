@@ -1,0 +1,36 @@
+struct Bag {
+    label: string;
+    scores: int[];
+}
+
+fn add_score(bag: Bag, score: int) -> void {
+    push(bag.scores, score);
+}
+
+let original: Bag = Bag {
+    label: "第一组",
+    scores: [80, 90]
+};
+
+print("原始数据:", original);
+add_score(original, 100);
+print("修改后:", original);
+
+let shared_scores: int[] = original.scores;
+print("别名可见:", shared_scores[2]);
+
+let copy: Bag = clone(original);
+copy.scores[2] = 999;
+print("克隆后原值:", original.scores[2]);
+print("克隆后副本:", copy.scores[2]);
+
+struct Pair {
+    left: int[];
+    right: int[];
+}
+let common: int[] = [1];
+let pair: Pair = Pair { left: common, right: common };
+let independent: Pair = clone(pair);
+independent.left[0] = 7;
+print("副本内部共享:", independent.right[0]);
+print("原对象不变:", pair.left[0]);

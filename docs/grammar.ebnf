@@ -1,0 +1,66 @@
+(* ZBY V0.2 Parser validation grammar — DRAFT, not a frozen specification. *)
+(* Tokens from the Lexer are inputs. Context checks are described below. *)
+
+Program          = { TopLevelItem } ;
+TopLevelItem     = StructDecl | FunctionDecl | Statement ;
+StructDecl       = "struct", Identifier, "{", { FieldDecl }, "}" ;
+FieldDecl        = Identifier, ":", Type, ";" ;
+FunctionDecl     = "fn", Identifier, "(", [ ParamList ], ")", "->", ReturnType, Block ;
+ParamList        = Parameter, { ",", Parameter } ;
+Parameter        = Identifier, ":", Type ;
+Type             = BaseType, [ "[", "]" ] ;
+BaseType         = "int" | "float" | "string" | "bool" | Identifier ;
+ReturnType       = Type | "void" ;
+Block            = "{", { Statement }, "}" ;
+Statement        = VarDecl, ";"
+                 | Assignment, ";"
+                 | CallStmt, ";"
+                 | "return", [ Expression ], ";"
+                 | "break", ";" | "continue", ";"
+                 | IfStmt | WhileStmt | ForStmt ;
+VarDecl          = "let", Identifier, ":", Type, "=", Expression ;
+Assignment       = AssignmentTarget, "=", Expression ;
+AssignmentTarget = Identifier, { ".", Identifier | "[", Expression, "]" } ;
+CallStmt         = Identifier, "(", [ ArgumentList ], ")" ;
+IfStmt           = "if", "(", Expression, ")", Block,
+                   { "else", "if", "(", Expression, ")", Block },
+                   [ "else", Block ] ;
+WhileStmt        = "while", "(", Expression, ")", Block ;
+ForStmt          = "for", "(", VarDecl, ";", Expression, ";", Assignment, ")", Block ;
+
+Expression       = OrExpr ;
+OrExpr           = AndExpr, { "or", AndExpr } ;
+AndExpr          = NotExpr, { "and", NotExpr } ;
+NotExpr          = "not", NotExpr | EqualityExpr ;
+EqualityExpr     = RelExpr, [ ("==" | "!="), RelExpr ] ;
+RelExpr          = AddExpr, [ ("<" | "<=" | ">" | ">="), AddExpr ] ;
+AddExpr          = MulExpr, { ("+" | "-"), MulExpr } ;
+MulExpr          = UnaryExpr, { ("*" | "/" | "%"), UnaryExpr } ;
+UnaryExpr        = "-", UnaryExpr | PostfixExpr ;
+PostfixExpr      = PrimaryExpr, { "(", [ ArgumentList ], ")"
+                               | "[", Expression, "]"
+                               | ".", Identifier } ;
+PrimaryExpr      = IntegerLiteral | FloatLiteral | StringLiteral
+                 | "true" | "false" | Identifier
+                 | ArrayLiteral | StructLiteral | "(", Expression, ")" ;
+ArrayLiteral     = "[", [ ArgumentList ], "]" ;
+StructLiteral    = Identifier, "{", [ StructFieldInitList ], "}" ;
+StructFieldInitList = StructFieldInit, { ",", StructFieldInit } ;
+StructFieldInit  = Identifier, ":", Expression ;
+ArgumentList     = Expression, { ",", Expression } ;
+
+(* Contextual or non-syntactic restrictions:
+  - No unparenthesized comparison chains, even mixed relational/equality.
+    Thus a<b==true and a==b<c are invalid; (a<b)==true is permitted.
+  - fn / struct declarations occur only at top level.
+  - return requires a function context; break/continue require a loop
+    within the current function. These are checked before execution.
+  - User-defined name existence, type checking, array element homogeneity,
+    empty-array type contexts, function callability and signatures are NOT
+    checked by this Parser.
+  - Empty struct declaration and trailing comma syntax are STILL UNDECIDED.
+    Default ParserOptions conservatively reject them; explicit experimental
+    flags allow comparing both policies. These flags do NOT approve them.
+  - Identifiers, numeric/string literals, comments and source coordinates
+    are recognized by the Lexer rather than defined by this grammar.
+*)

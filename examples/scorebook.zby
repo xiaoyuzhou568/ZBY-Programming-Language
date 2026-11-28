@@ -1,0 +1,24 @@
+// 一个使用复合类型、函数、循环和深拷贝的成绩记录示例
+struct Student {
+    name: string;
+    scores: int[];
+}
+
+fn average(scores: int[]) -> float {
+    if (len(scores) == 0) {
+        return 0.0;
+    }
+    let total: int = 0;
+    for (let i: int = 0; i < len(scores); i = i + 1) {
+        total = total + scores[i];
+    }
+    return total / len(scores);
+}
+
+let student: Student = Student { name: "小林", scores: [80, 90] };
+let backup: Student = clone(student);
+push(student.scores, 100);
+print("学生:", student.name);
+print("当前成绩:", student.scores);
+print("备份成绩:", backup.scores);
+print("平均分:", average(student.scores));

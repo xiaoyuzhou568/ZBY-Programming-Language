@@ -1,0 +1,4 @@
+let numbers: int[] = [1, 2];
+print("错误之前:", numbers);
+numbers[9] = 30;
+print("这行不应执行");

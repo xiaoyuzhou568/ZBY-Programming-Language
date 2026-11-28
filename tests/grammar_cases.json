@@ -1,0 +1,422 @@
+[
+  {
+    "id": "S01",
+    "source": "",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S02",
+    "source": "// 只有注释\n",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S03",
+    "source": "let x: int = 0;",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S04",
+    "source": "let x: float = 1e3;",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S05",
+    "source": "let scores: int[] = [];",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S06",
+    "source": "let names: string[] = [\"Alice\", \"Bob\"];",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S07",
+    "source": "struct Student { name: string; score: int; }",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S08",
+    "source": "struct Student { name: string; score: int; } let s: Student = Student { name: \"Alice\", score: 90 };",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S09",
+    "source": "fn calc(a: int, b: int) -> int { return a + b; }",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S10",
+    "source": "fn quit() -> void { return; }",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S11",
+    "source": "if (true) {print(1);} else if (false) {print(2);} else {print(3);}",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S12",
+    "source": "while (true) { break; }",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S13",
+    "source": "for (let i: int = 0; i < 3; i = i + 1) { print(i); }",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S14",
+    "source": "numbers[0] = 100;",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S15",
+    "source": "students[0].age = 20;",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S16",
+    "source": "print(false and (1 / 0 > 0.0));",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S17",
+    "source": "print(not 3 < 5);",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S18",
+    "source": "print((1 < 2) == true);",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S19",
+    "source": "print([1, 2, 3]);",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S20",
+    "source": "let url: string = \"https://zby.dev\"; // ok",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S21",
+    "source": "let s: string = \"Hello\\nWorld\";",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S22",
+    "source": "fn create() -> int[] {return [];}",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S23",
+    "source": "let x: int = -42;",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S24",
+    "source": "print(to_float(\"3\"));",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S25",
+    "source": "fn f() -> void {while (true) {continue;}}",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S26",
+    "source": "print(1.0E+5);",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S27",
+    "source": "let z: int = 1 + 2 * 3;",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "S28",
+    "source": "struct Empty {} let e: Empty = Empty {};",
+    "expected": "accept",
+    "note": "草案允许，但该语言规则尚待确认"
+  },
+  {
+    "id": "X01",
+    "source": "let x = 1;",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X02",
+    "source": "let x: int = ;",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X03",
+    "source": "let x: int = 012;",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X04",
+    "source": "let x: float = .5;",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X05",
+    "source": "let x: float = 1.;",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X06",
+    "source": "let x: float = 1e;",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X07",
+    "source": "let x: int = 1",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X08",
+    "source": "if (true) print(1);",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X09",
+    "source": "for (let i: int = 0; i < 3;) {print(i);}",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X10",
+    "source": "a = b = 5;",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X11",
+    "source": "1 + 2;",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X12",
+    "source": "foo().age = 1;",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X13",
+    "source": "print(1,);",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X14",
+    "source": "print(\"bad\\q\");",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X15",
+    "source": "print(\"unterminated);",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X16",
+    "source": "print(a < b < c);",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X17",
+    "source": "print(a < b == true);",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X18",
+    "source": "let a: int[][] = [];",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X19",
+    "source": "fn f() -> void { fn g() -> void {} }",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X20",
+    "source": "struct S { a: int, b: int; }",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X21",
+    "source": "let s: Student = Student { name: \"x\", };",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X22",
+    "source": ";",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X23",
+    "source": "let x: int = +1;",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X24",
+    "source": "let x: int = 0xFF;",
+    "expected": "reject",
+    "note": ""
+  },
+  {
+    "id": "X25",
+    "source": "let let: int = 1;",
+    "expected": "reject",
+    "note": "保留字不允许作标识符"
+  },
+  {
+    "id": "X26",
+    "source": "let if: int = 1;",
+    "expected": "reject",
+    "note": "保留字不允许作标识符"
+  },
+  {
+    "id": "X27",
+    "source": "fn while() -> void {}",
+    "expected": "reject",
+    "note": "保留字不允许作标识符"
+  },
+  {
+    "id": "X28",
+    "source": "struct int {}",
+    "expected": "reject",
+    "note": "类型名是保留字"
+  },
+  {
+    "id": "X29",
+    "source": "let 学生: int = 20;",
+    "expected": "reject",
+    "note": "ASCII 标识符限制"
+  },
+  {
+    "id": "C01",
+    "source": "break;",
+    "expected": "structural-reject",
+    "note": ""
+  },
+  {
+    "id": "C02",
+    "source": "return;",
+    "expected": "structural-reject",
+    "note": ""
+  },
+  {
+    "id": "C03",
+    "source": "continue;",
+    "expected": "structural-reject",
+    "note": ""
+  },
+  {
+    "id": "C04",
+    "source": "fn f() -> void {break;}",
+    "expected": "structural-reject",
+    "note": ""
+  },
+  {
+    "id": "C05",
+    "source": "fn f() -> void {for (let i: int=0; i<3; i=i+1) {continue;} }",
+    "expected": "accept",
+    "note": ""
+  },
+  {
+    "id": "T01",
+    "source": "print([]);",
+    "expected": "semantic-reject",
+    "note": "空数组无预期元素类型"
+  },
+  {
+    "id": "T02",
+    "source": "let x: int = 1e3;",
+    "expected": "semantic-reject",
+    "note": "float 不能隐式赋值 int"
+  },
+  {
+    "id": "T03",
+    "source": "print(1 + 2.0);",
+    "expected": "semantic-reject",
+    "note": "不允许混合数值类型"
+  },
+  {
+    "id": "T04",
+    "source": "let x: float = 1e309;",
+    "expected": "semantic-reject",
+    "note": "有限 binary64 范围错误"
+  },
+  {
+    "id": "T05",
+    "source": "fn f() -> int {} f();",
+    "expected": "semantic-reject",
+    "note": "运行时非void函数缺失return"
+  },
+  {
+    "id": "T06",
+    "source": "let x: int = 1; let x: int = 2;",
+    "expected": "semantic-reject",
+    "note": "同作用域重复声明"
+  },
+  {
+    "id": "T07",
+    "source": "let print: int = 1;",
+    "expected": "semantic-reject",
+    "note": "内置名称冲突"
+  },
+  {
+    "id": "T08",
+    "source": "let a: int[] = []; print(a[-1]);",
+    "expected": "semantic-reject",
+    "note": "运行时负下标"
+  }
+]

@@ -1,0 +1,3 @@
+print("这一行会输出");
+let age: int = "twenty";
+print("这一行不会执行");

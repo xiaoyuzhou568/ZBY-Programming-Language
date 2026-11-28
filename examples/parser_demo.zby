@@ -1,0 +1,20 @@
+// ZBY Parser + AST demonstration: this file is parsed, NOT executed.
+struct Student {
+    name: string;
+    scores: int[];
+}
+
+fn choose(a: int, b: int) -> int {
+    if (a < b) {
+        return b;
+    } else {
+        return a;
+    }
+}
+
+let students: Student[] = [
+    Student { name: "小雨", scores: [90, 95] }
+];
+students[0].scores[1] = choose(90, 98);
+let flag: bool = not (3 < 5) or true and false;
+print(students[0].name);

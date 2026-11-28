@@ -1,0 +1,19 @@
+// ZBY V0.2 Interpreter 阶段一运行演示
+let base: int = 2 + 3 * 4;
+let label: string = "ZBY";
+
+fn square(x: int) -> int {
+    return x * x;
+}
+
+print(label, "开始执行");
+print("运算:", base, square(5));
+
+for (let i: int = 0; i < 3; i = i + 1) {
+    print("循环:", i);
+}
+
+let ratio: float = 7 / 2;
+print("精确整数除法:", int_div(-7, 3));
+print("普通除法:", ratio);
+print("布尔短路:", false and (1 / 0 > 0.0));
